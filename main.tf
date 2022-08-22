@@ -61,7 +61,7 @@ resource "google_cloud_run_service" "gcpdiag_service" {
             name = "jira_token"
             value_from {
                 secret_key_ref {
-                  key = "latest"
+                  key = 1
                   name = "jira-token-cloud-run-test"
                 }
             }
