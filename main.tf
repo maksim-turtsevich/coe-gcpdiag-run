@@ -58,13 +58,19 @@ resource "google_cloud_run_service" "gcpdiag_service" {
           container_port = 8000
         }
         env {
-            name = "jira_token"
-            value_from {
-                secret_key_ref {
-                  key = 1
-                  name = "jira-token-cloud-run-test"
-                }
+          name = "jira_token"
+          value_from {
+            secret_key_ref {
+              key  = 2
+              name = "jira-token"
             }
+          }
+        }
+        resources {
+          limits = {
+            "memory" = "4Gi" 
+            "cpu" = 2
+          }
         }
       }
       service_account_name = google_service_account.gcpdiag-run-se.email

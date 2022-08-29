@@ -10,7 +10,7 @@ variable "region" {
 
 variable "cloud-build-roles" {
   type    = set(string)
-  default = ["roles/cloudbuild.builds.builder", "roles/run.admin"]
+  default = ["roles/cloudbuild.builds.builder", "roles/run.admin", "roles/iam.serviceAccountUser", "roles/secretmanager.secretAccessor"]
 }
 
 variable "gcpdiag-roles" {
