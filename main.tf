@@ -51,6 +51,11 @@ resource "google_cloud_run_service" "gcpdiag_service" {
   }
 
   template {
+    metadata {
+      annotations = {
+        "run.googleapis.com/execution-environment" = "gen2"
+      }
+    }
     spec {
       containers {
         image = "gcr.io/gcp-coe-msp-sandbox/gcpdiag:latest"
@@ -74,6 +79,12 @@ resource "google_cloud_run_service" "gcpdiag_service" {
         }
       }
       service_account_name = google_service_account.gcpdiag-run-se.email
+    }
+  }
+
+  metadata {
+    annotations = {
+      "run.googleapis.com/launch-stage" = "BETA"
     }
   }
   depends_on = [
